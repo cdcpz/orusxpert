@@ -1,0 +1,11 @@
+/* You can add global styles to this file, and also import other style files */
+@import './styles/components.style.scss';
+
+$color: #F5F5F5;
+
+body {
+    padding: 0 !important;
+    margin: 0 !important;
+    border: 0 !important;
+    background-color: $color;
+}

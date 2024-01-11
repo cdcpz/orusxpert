@@ -1,0 +1,45 @@
+<div class="root" *ngIf="state.show">
+  <div class="back" (click)="hide()"></div>
+  <div class="modal" [ngStyle]="{ top: y, left: x, right: right }">
+    <div class="content">
+      <app-circle-button
+        icon="assets/icons/CloseCircle.svg"
+        [style]="buttonStyle"
+        (action)="hide()"
+        *ngIf="state.showClose"
+      ></app-circle-button>
+      <div class="children">
+        <div class="container">
+          <div class="delete" *ngIf="state.showDelete">
+            <a (click)="deleteAction.emit(formulario.value.id)"
+              ><img id="delete" src="assets/icons/Delete1.svg" alt="delete"
+            /></a>
+          </div>
+          <form [formGroup]="formulario">
+            <div class="form">
+              <label>Nombre</label>
+              <input type="text" id="ubication" formControlName="ubication" />
+              <label>Temperatura</label>
+              <input
+                type="number"
+                id="temperature"
+                formControlName="temperature"
+              />
+              <label>Latitud</label>
+              <input type="number" id="latitude" formControlName="latitude" />
+              <label>Longitud</label>
+              <input type="number" id="longitude" formControlName="longitude" />
+            </div>
+
+            <div class="button">
+              <button id="save" (click)="accept()">Guardar</button>
+              <button id="cancel" (click)="cancelAction.emit($event)">
+                Cancelar
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

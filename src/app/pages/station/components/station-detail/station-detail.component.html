@@ -1,0 +1,50 @@
+<div class="root" *ngIf="state.show">
+  <div class="back" (click)="hide()"></div>
+  <div class="modal" [ngStyle]="{ top: y, left: x }">
+    <div class="content">
+      <app-circle-button
+        icon="assets/icons/CloseCircle.svg"
+        [style]="buttonStyle"
+        (action)="hide()"
+      ></app-circle-button>
+      <div class="children">
+        <div class="container">
+          <div class="form">
+            <h5>{{ data.ubication }}</h5>
+            <div class="temperatura">
+              <div class="icon">
+                <img src="assets/icons/thermometer_line.svg" />
+                <label>Temperatura</label>
+              </div>
+              <div class="valorTem">
+                <label>{{ data.temperature }}</label>
+              </div>
+            </div>
+            <hr id="hr" />
+            <div class="ubicacion">
+              <div class="icon">
+                <img src="assets/icons/Website.svg" />
+                <label>Ubicacion</label>
+              </div>
+              <div class="row">
+                <div class="latitud">
+                  <label>Latitud</label>
+                  <label id="value">{{ data.latitude }}</label>
+                </div>
+                <div class="longitud">
+                  <label>Longitud</label>
+                  <label id="value">{{ data.longitude }}</label>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="button">
+            <button id="edit" (click)="editAction.emit($event)">
+              Editar información
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

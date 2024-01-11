@@ -1,0 +1,41 @@
+<div class="root">
+  <div class="button">
+    <app-add-button
+      icon="assets/icons/Add.svg"
+      [style]="buttonStyle"
+      (action)="toggle($event)"
+      label="Agregar estación"
+    ></app-add-button>
+  </div>
+  <div class="map" (click)="emit($event)">
+    <google-map
+      width="100vw"
+      height="100%"
+      [center]="center"
+      [options]="options"
+    >
+      <map-marker
+        [clickable]="true"
+        *ngFor="let item of places"
+        [title]="item.mark.title"
+        [position]="item.mark.position"
+        (mapClick)="result(item)"
+        [icon]="item.mark.icon"
+      >
+      </map-marker>
+    </google-map>
+  </div>
+</div>
+<app-station-crud
+  [state]="modal.crud"
+  [data]="place.station"
+  (confirmAction)="dispatch('crud', 'firstAction', $event)"
+  (cancelAction)="dispatch('crud', 'secondAction')"
+  (deleteAction)="delete($event)"
+></app-station-crud>
+<app-station-detail
+  [state]="modal.detail"
+  [data]="place.station"
+  (editAction)="dispatch('detail', 'firstAction')"
+  (closeAction)="close()"
+></app-station-detail>
